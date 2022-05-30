@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+puts("Seeding Tarot Cards...")
+
+TarotCard.create({card_name:'The Fool', image:'https://www.alittlesparkofjoy.com/wp-content/uploads/2020/03/the-fool-tarot-card.jpg', description:'The Fool tarot card is the number 0 of the Major Arcana, which stands for the number of unlimited potentials. To see the Fool tarot card generally indicates that you are on the verge of an unexpected and exciting new adventure. This may require you to take a blind leap of faith.'})
+TarotCard.create({card_name:'The Magician',image:'https://www.alittlesparkofjoy.com/wp-content/uploads/2020/03/the-magician-tarot-card.jpg', description:'The Magician tarot card reveals how your wishes and desires can be realized through determination and willpower. When this card shows up in your reading, you can be assured that you have the drive to make your dreams happen.'})
+TarotCard.create({card_name:'The High Priestess',image:'https://gfx.tarot.com/images/site/decks/universal-waite/full_size/2.jpg', description:'The most intuitive, connected card in the whole Tarot deck, The High Priestess is a card of awareness and subconsciousness. This card urges you to listen to your inner voice and to follow your instincts. Your mind knows far, far more than you think it does, and The High Priestess embodies this concept. When she arises in your Tarot reading, stop looking for answers in the outside world and instead, turn within for the guidance you seek.'})
+TarotCard.create({card_name:'The Empress',image:'https://gfx.tarot.com/images/site/decks/universal-waite/full_size/3.jpg', description:'The Empress is the most feminine card in the Tarot, and greatly encourages compassion, beauty, and love. She is deeply connected to Mother Nature, and her influence is powerful when you absorb the energy of the natural world around you.'})
+TarotCard.create({card_name:'The Emperor',image:'https://gfx.tarot.com/images/site/decks/universal-waite/full_size/4.jpg', description:'The Emperor is a card of leadership and power. He is an authoritative force who has been through many experiences to achieve this status. He represents structure and solidity, and reminds you that you, too, hold immense amounts of power over your own life, and what happens to it'})
+TarotCard.create({card_name:'The Hierophant',image:'https://gfx.tarot.com/images/site/decks/universal-waite/full_size/5.jpg', description:'The Hierophant is like a messenger from the heavens. He is experienced in spirituality and guidance, and his job is to bring these lessons down to us here in the real world. When The Hierophant comes up in your Tarot reading, youre encouraged to follow the rules, and to find a spiritual perspective on your current situation.'})
+TarotCard.create({card_name:'The Lovers',image:'https://gfx.tarot.com/images/site/decks/universal-waite/full_size/6.jpg', description:'Its no surprise The Lovers card represents the close relationships in your life. If it comes up in your Tarot reading, your love life is in need of extra focus and attention. However, this is just as much a card about your values and decisions. You may find The Lovers come up when you are at a crossroads, and must consider all the possible consequences of your choices.'})
+TarotCard.create({card_name:'The Chariot',image:'https://gfx.tarot.com/images/site/decks/universal-waite/full_size/7.jpg', description:'The Chariot card is connected to your natural drive and determination, and can indicate an upcoming victory. This card reminds you that your greatest successes wont come through limited thinking -- when you combine the knowledge of your mind with that of your heart and spirit, you are an unstoppable force.'})
+
+puts("Seeding Users...")
+User.create({username:"testUser", password_digest:"test"})
+
+puts("Seeding Readings...")
+Reading.create({title:'The Fool', content:'I recently expirienced this card in a way that encouraged me to finally put in my two weeks and go after my dream of underwater basket-weaving. Best leap of faith I ever took!', user_id:1, tarot_card_id:1})
