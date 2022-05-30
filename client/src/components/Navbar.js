@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export function Navbar(){
     return (
-        <div>
+        <div className='navDiv'>
             <div className='logo'>
                 Arcana League 
             </div>
