@@ -29,7 +29,11 @@ function Home(){
 
     return (
         <div>
-            <h1>Arcana League</h1>
+            <div className="home-text">
+                <div className="home-text-container">
+                    <p>“The possession of knowledge does not kill the sense of wonder and mystery. There is always more mystery.” ― Anais Nin</p>
+                </div>
+            </div>
             {cardRender}
         </div>
     )

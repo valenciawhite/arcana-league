@@ -14,3 +14,5 @@ User.create({username:"testUser", password_digest:"test"})
 
 puts("Seeding Readings...")
 Reading.create({title:'The Fool', content:'I recently expirienced this card in a way that encouraged me to finally put in my two weeks and go after my dream of underwater basket-weaving. Best leap of faith I ever took!', user_id:1, tarot_card_id:1})
+
+Reading.create({title:'The Magician', content:'Everything you need is already inside you!', user_id:2, tarot_card_id:2})

@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_29_150123) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_31_053535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auths", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "reading_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reading_id"], name: "index_comments_on_reading_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "readings", force: :cascade do |t|
     t.string "title"
@@ -23,6 +38,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_150123) do
     t.datetime "updated_at", null: false
     t.index ["tarot_card_id"], name: "index_readings_on_tarot_card_id"
     t.index ["user_id"], name: "index_readings_on_user_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tarot_cards", force: :cascade do |t|
@@ -40,6 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_150123) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "readings"
+  add_foreign_key "comments", "users"
   add_foreign_key "readings", "tarot_cards"
   add_foreign_key "readings", "users"
 end
