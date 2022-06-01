@@ -9,14 +9,18 @@ function TarotCard({card_name, image, description}){
   }
     
       return (
+        <div className="main-container">
+          <div className="minor-container">
       <div className="tarot-list" >
         <div className="card">
           <img className="card-img-top" src={image} alt={card_name}></img>
           <h5 className="card-title">{card_name}</h5>
-          <ReadMore>
+          <ReadMore >
             {description}
           </ReadMore>
         </div>
+      </div>
+      </div>
       </div>
       )
     }
