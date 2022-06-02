@@ -1,14 +1,15 @@
 import React from 'react'
 
-export function Search(){
+
+export function Search({handleSearch}){
     return (
-        <div className='navDiv'>
-            <div className='logo'>
-                Arcana League 
-            </div>
-            <nav className='nav-item'>
-            
-            </nav>
+        <div className='search'>
+            <input  
+            onChange={(e) => 
+            handleSearch(e.target.value)
+            }
+            type='text' placeholder='type to search'>
+            </input>
         </div>
     )
 

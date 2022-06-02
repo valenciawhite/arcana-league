@@ -1,8 +1,14 @@
+import { Search } from "../Search"
+import { useState } from "react";
+
 export function Sidebar({entries, handleAddEntry, handleDelete, setActiveNote, activeNote}){
     const sortedNotes = entries.sort((a,b) => b.lastModified - a.lastModified)
+
+    // const [search, setSearch] = useState('');
     
     return(
         <div className="app-sidebar">
+          {/* <Search handleSearch={(e) => search} /> */}
             <div className='app-sidebar-header' >
                 <h1>Tarot Readings</h1>
                 <button onClick={handleAddEntry}>Add</button>

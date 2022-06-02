@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import uuid from 'react-uuid'
 import { Main } from "./Notes/Main";
 import { Sidebar } from "./Notes/Sidebar";
+import { Search } from "./Search";
 
 export function Readings(){
     const [entries, setEntries] = useState(
@@ -43,6 +44,8 @@ export function Readings(){
     const getActiveNote = () => {
         return entries.find((entry) => entry.id === activeNote)
     }
+
+   
 
     return (
         <div className="readings-home">

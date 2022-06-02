@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 
-function Login({ setCurrentUser }) {
+function Login({ currentUser, setCurrentUser }) {
     let navigate = useHistory();
-    // const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
     
     const [formData, setFormData] = useState({
         username:'',
@@ -15,14 +13,13 @@ function Login({ setCurrentUser }) {
     function handle(e){
         const newData ={...formData}
         newData[e.target.id] = e.target.value
-        setFormData(newData)
-        console.log(newData);
+        setFormData(newData);
     }
 
     function handleSubmit(e){
         e.preventDefault();
 
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,34 +28,21 @@ function Login({ setCurrentUser }) {
             body: JSON.stringify(formData),
         }) 
         .then(res => res.json())
-        .then(user => {setCurrentUser(user)
-            navigate('/profile')})   
+        .then(data => {
+            localStorage.setItem('userId', data.user)
+            setCurrentUser(data.user);
+            
+        })   
   }
 
-//   function handleSubmit(e){
-//     e.preventDefault();
-//     const user = {
-//         username: username,
-//         password
-//     }
-//     fetch('/login', {
-//         method: 'POST',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify({user}) 
-//    })
-//    .then(res=> res.json())
-//    .then((user) => {setCurrentUser(user)
-//      navigate('/profile')})
-// }
-
-//   function handleLogout(){
-//     fetch('/logout', {method: "DELETE"})
-//     .then(res => {
-//       if (res.ok){
-//         setCurrentUser(null)
-//       }
-//     })
-//   }
+  function handleLogout(){
+    fetch('/logout', {method: "DELETE"})
+    .then(res => {
+      if (res.ok){
+        setCurrentUser(null)
+      }
+    })
+  }
 
     return (
         <div className='login'>

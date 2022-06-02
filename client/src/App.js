@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,34 +7,40 @@ import Login from "./components/Login"
 import Signup from "./components/Signup"
 import { Navbar } from "./components/Navbar";
 import { Readings } from "./components/Readings";
+import LoggedIn from "./components/LoggedIn";
+import LoggedOut from "./components/LoggedOut";
 
 function App() {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
+  const [loggedIn, setLoggedIn] = useState(false)
 
-  // useEffect(() => {
-  //   fetch('/me').then((res) => {
-  //     if (res.ok) {
-  //       res.json().then((user) => {
-  //         setCurrentUser(user);
-  //       })
-  //     }
-  //   })
-  // },[])
+  useEffect(() => {
+    fetch(`http://localhost:3000/users`).then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(currentUser);
+          setLoggedIn(true)
+        });
+      }
+    })
+  },[])
+
+ 
+  function logout(){
+    setCurrentUser({});
+    setLoggedIn(false)
+    localStorage.token = '';
+  }
 
   return (
-    <BrowserRouter>
-      <div className="App">
-      <Navbar />
-        <Switch>
-          <Route path="/login" element={Login} setCurrentUser={setCurrentUser}><Login /></Route>
-          <Route path="/signup" element={Signup} setCurrentUser={setCurrentUser}><Signup /></Route>
-          <Route path="/readings" setCurrentUser={setCurrentUser}><Readings /></Route>
-          <Route path="/" element={Home} setCurrentUser={setCurrentUser}><Home /></Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div className="arcana-app">
+      <BrowserRouter>
+      {currentUser ? <LoggedIn /> : <LoggedOut />}
+      </BrowserRouter>
+    </div>
+   
   );
 }
 
 export default App;
+

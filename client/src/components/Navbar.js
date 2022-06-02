@@ -1,7 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export function Navbar(){
+export function Navbar({currentUser, setCurrentUser}){
+
+    function handleLogout(){
+        fetch('/logout', {method: "DELETE"})
+        .then(res => {
+          if (res.ok){
+            setCurrentUser(null)
+          }
+        })
+      }
+
+
     return (
         <div className='navDiv'>
             <div className='logo'>
@@ -15,10 +26,8 @@ export function Navbar(){
                     <li>
                         <Link to='/readings'>Readings</Link>
                     </li>
-                    <li>
-                        <Link to='/login'>Login</Link>
-                    </li>
-                </ul>
+                    </ul>
+                        <button onClick={handleLogout}>Logout</button>
             </nav>
         </div>
     )

@@ -240,14 +240,14 @@ textarea {
   font-size: 2rem;
 }
 
-.no-active-note {
+/* .no-active-note {
   width: 70%;
   height: 100vh;
   line-height: 100vh;
   text-align: center;
   font-size: 2rem;
   color: #999;
-}
+} */
 
 .app-sidebar-header button{
   font-size: 15px;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-function Signup() {
+function Signup({setCurrentUser, currentUser}) {
     
     const [formData, setFormData] = useState({
         username:'',
@@ -14,24 +14,28 @@ function Signup() {
             ...formData,
             [e.target.name]: e.target.value,
         })
-        
-        // const newData ={...formData}
-        // newData[e.target.id] = e.target.value
-        // setFormData(newData)
-        // console.log(newData);
     }
 
     function handleSubmit(e){
         e.preventDefault();
         e.target.reset();
         
-        fetch('http://localhost:3000/users', {
+        fetch('http://localhost:3000/signup', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             body: JSON.stringify(formData) 
         })
-        .then(res => res.json())
-        .then((res) => alert("Account created. Please log in :)"))
+        .then(res => {
+            if (res.ok) {
+                res.json().then((user) => {
+                    setCurrentUser(user)
+                })
+            } else{
+                res.json().then((errors) => {
+                    console.error(errors)
+                })
+            }
+        })
        }
        
     return (
